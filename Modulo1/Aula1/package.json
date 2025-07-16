@@ -1,0 +1,13 @@
+{
+  "name": "aula1",
+  "version": "1.0.0",
+  "description": "Teste da primeira aula para aprender a usar npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Bida",
+  "license": "ISC",
+  "devDependencies": {}
+}

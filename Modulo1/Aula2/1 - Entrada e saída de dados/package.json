@@ -1,0 +1,12 @@
+{
+  "name": "entrada-de-dados",
+  "version": "1.0.0",
+  "description": "Aprendemos a usar funções que coletam informações e as imprimem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

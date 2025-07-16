@@ -1,0 +1,12 @@
+{
+  "name": "manipulacao-de-objetos",
+  "version": "1.0.0",
+  "description": "Repete o exercício 2, criando um objeto chamado usuário que recebe os atributos e, então, imprimimos eles usando propriedades de objeto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
