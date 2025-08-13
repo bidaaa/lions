@@ -1,4 +1,4 @@
-import { prompt, exibirMenu, usuarios, telefones } from "./app.js";
+import { prompt, exibirMenu, usuarios } from "./app.js";
 
 export function listarUsuarios() {
     console.clear()
