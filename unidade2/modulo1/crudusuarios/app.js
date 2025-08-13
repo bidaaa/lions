@@ -1,9 +1,11 @@
 import PromptSync from "prompt-sync";
 export const prompt = PromptSync({ sigint: true });
 import { adicionarUsuario } from "./adicionar.js";
+import { listarUsuarios } from "./listar.js";
 
 
 export let usuarios = []
+export let telefones = []
 
 export function exibirMenu(){
     console.clear()
@@ -16,7 +18,7 @@ export function exibirMenu(){
             adicionarUsuario()
             break
         case 2:
-            listarUsuario()
+            listarUsuarios()
             break
         case 3:
             editarUsuario()
