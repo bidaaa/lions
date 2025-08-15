@@ -42,6 +42,7 @@ export function cadastroCandidato(numsCandidato){
         id: id,
         votos: votos
     }
+    
     candidatos.push(candidato)
     console.log("Candidato cadastrado!\nDeseja adicionar mais algum?\n1- Sim\nOutro- Não\n")
     let opcao = prompt("> ")
