@@ -1,6 +1,7 @@
 import PromptSync from "prompt-sync";
 export const prompt = PromptSync({ sigint: true });
 import { cadastroCandidato } from "./cadastro.js";
+import { registroVotos } from "./votar.js";
 
 export let candidatos = []
 export let numsCandidato = []
@@ -14,7 +15,7 @@ export function exibirMenu(){
             registroVotos()
             break
         case "2":
-            cadastroCandidato()
+            cadastroCandidato(numsCandidato)
             break
         case "3":
             apuracao()
