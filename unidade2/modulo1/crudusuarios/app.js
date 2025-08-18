@@ -3,7 +3,7 @@ export const prompt = PromptSync({ sigint: true });
 import { adicionarUsuario } from "./adicionar.js";
 import { listarUsuarios } from "./listar.js";
 import { editarUsuario } from "./editar.js";
-
+import { removerUsuario } from "./remover.js";
 
 export let usuarios = []
 export let telefones = []
