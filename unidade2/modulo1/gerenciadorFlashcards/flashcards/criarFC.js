@@ -45,7 +45,7 @@ export function criarFlashcard() {
     }
   }
 
-  const flashcard = {
+  let flashcard = {
     pergunta: pergunta,
     resposta: resposta,
     idFlashcard: quantFC,

@@ -16,30 +16,32 @@ export function excluirBaralho() {
     }
   }
 
-  const baralho = baralhos[baralhoIndex]
+  const baralho = baralhos[baralhoIndex];
 
-  console.log(`Excluindo o baralho:\n Nome: ${baralho.nome}\n ID: ${baralho.id}`)
+  console.log(
+    `Excluindo o baralho:\n Nome: ${baralho.nome}\n ID: ${baralho.id}`
+  );
 
-  console.log("Certeza que deseja excluir esse baralho? Os flashcards associados a ele serão excluidos também.\n1- Sim\nOutro- Voltar")
-  let opcao = prompt("> ")
-  switch(opcao){
+  console.log(
+    "Certeza que deseja excluir esse baralho? Os flashcards associados a ele serão excluidos também.\n1- Sim\nOutro- Voltar"
+  );
+  let opcao = prompt("> ");
+  switch (opcao) {
     case "1":
-        flashcards.forEach((flashcard) => {
-            if(flashcard.idBaralho == baralho.id){
-                flashcards.splice(flashcard, 1)
-            }
-        })
-        baralhos.splice(baralhoIndex, 1)
-        console.log("Baralho excluído com sucesso!")
-        console.log("Pressione enter para voltar ao menu")
-        let menu = prompt("")
-        switch(menu){
-            default:
-                exibirMenu()
-                break
-        }
+      let flashcardsRestantes = flashcards.filter(flashcard => flashcard.idBaralho !== baralho.id);
+      flashcards.length = 0
+      flashcards.push(...flashcardsRestantes)
+      baralhos.splice(baralhoIndex, 1);
+      console.log("Baralho excluído com sucesso!");
+      console.log("Pressione enter para voltar ao menu");
+      let menu = prompt("");
+      switch (menu) {
+        default:
+          exibirMenu();
+          break;
+      }
     default:
-        exibirMenu()
-        break
+      exibirMenu();
+      break;
   }
 }
