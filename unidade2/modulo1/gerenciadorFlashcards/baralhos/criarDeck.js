@@ -1,4 +1,4 @@
-import { prompt, exibirMenu } from "../app.js";
+import { prompt, exibirMenu, baralhos } from "../app.js";
 
 let quantBaralho = 0
 
@@ -12,6 +12,8 @@ export function criarBaralho(){
         nome: nome,
         id: quantBaralho
     }
+
+    baralhos.push(baralho)
 
     console.log("Baralho criado com sucesso!")
     console.log("Deseja criar mais algum baralho?\n1- Sim\nOutro- Sair")

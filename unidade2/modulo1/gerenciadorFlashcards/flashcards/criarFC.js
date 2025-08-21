@@ -1,6 +1,7 @@
-import { prompt, exibirMenu } from "../app.js";
+import { prompt, exibirMenu, baralhos, flashcards } from "../app.js";
 
 let quantFC = 0
+let idBaralho = ""
 
 export function criarFlashcard(){
     console.clear()
@@ -9,12 +10,34 @@ export function criarFlashcard(){
     console.log("Qual a resposta?")
     let resposta = prompt("> ")
     quantFC++
+    console.log("Qual o nome do baralho que deseja adicionar esse flashcard?")
+    let deck = prompt("> ")
+    deck = deck.toLowerCase()
+    baralhos.forEach((baralho) => {
+        if(deck == baralho.nome){
+            idBaralho = baralho.id
+        } else {
+            console.log("Baralho não encontrado no sistema.")
+            console.log("Pressione enter para começar novamente.")
+            let opcao = prompt("")
+            switch(opcao){
+                default:
+                    criarFlashcard()
+                    break
+            }
+
+            criarFlashcard()
+        }
+    })
 
     const flashcard = {
         pergunta: pergunta,
         resposta: resposta,
-        id: quantFC
+        idFlashcard: quantFC,
+        idBaralho: idBaralho
     }
+
+    flashcards.push(flashcard)
 
     console.log("Flashcard criado com sucesso!")
     console.log("Deseja criar mais algum flashcard?\n1- Sim\nOutro- Sair")

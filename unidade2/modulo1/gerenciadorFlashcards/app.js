@@ -10,6 +10,9 @@ import { excluirBaralho } from "./baralhos/excluirDeck.js";
 import { excluirFlashcards } from "./flashcards/excluirFC.js";
 import { buscarFlashcards } from "./flashcards/buscar.js";
 
+export let baralhos = []
+export let flashcards = []
+
 export function exibirMenu(){
     console.log("Bem-vindo ao sistema de flashcards!\nSelecione a opção desejada:\n1-Criar baralho\n2-Criar flashcard\n3-Listar baralhos\n4-Listar flashcards\n5-Atualizar baralhos\n6-Atualizar flashcards\n7-Excluir baralhos\n8-Excluir flashcards\n9-Buscar flashcards\n0-Sair")
     let opcao = prompt("> ")
