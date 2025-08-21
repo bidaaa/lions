@@ -1,4 +1,5 @@
 import { prompt, exibirMenu, flashcards } from "../app.js";
+let menu
 
 export function excluirFlashcards(){
     console.clear()
@@ -8,7 +9,7 @@ export function excluirFlashcards(){
     if (fcIndex === -1) {
       console.log("Flashcard não encontrado.");
       console.log("\nPressione Enter para voltar ao menu");
-      let menu = prompt("");
+      menu = prompt("");
       switch (menu) {
         default:
           exibirMenu();
@@ -30,7 +31,7 @@ export function excluirFlashcards(){
           flashcards.splice(fcIndex, 1)
           console.log("Flashcard excluído com sucesso!");
           console.log("Pressione enter para voltar ao menu");
-          let menu = prompt("");
+          menu = prompt("");
           switch (menu) {
             default:
               exibirMenu();

@@ -1,4 +1,5 @@
 import { prompt, exibirMenu, baralhos } from "../app.js";
+let menu
 
 export function atualizarBaralho() {
   console.clear();
@@ -18,7 +19,7 @@ export function atualizarBaralho() {
     if (novoNome == baralho.nome) {
       console.log("Um baralho com esse nome já existe, tente novamente.");
       console.log("Pressione Enter para retornar");
-      let menu = prompt("");
+      menu = prompt("");
       switch (menu) {
         default:
           atualizarBaralho();
@@ -32,7 +33,7 @@ export function atualizarBaralho() {
 
   console.log("Novo nome salvo!");
   console.log("Pressione Enter para retornar ao menu");
-  let menu = prompt("");
+  menu = prompt("");
   switch (menu) {
     default:
       exibirMenu();

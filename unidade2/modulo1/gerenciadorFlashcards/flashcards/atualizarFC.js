@@ -1,4 +1,5 @@
 import { prompt, exibirMenu, flashcards } from "../app.js";
+let menu
 
 export function atualizarFlashcards() {
   console.clear();
@@ -19,12 +20,12 @@ export function atualizarFlashcards() {
   let novaPergunta = prompt("> ");
 
   console.log(
-    "Digite a nova resposta do baralho: (ou deixe em branco para manter a mesma)"
+    "\nDigite a nova resposta do baralho: (ou deixe em branco para manter a mesma)"
   );
   let novaResposta = prompt("> ");
 
   console.log(
-    "Caso deseje mudar de baralho, digite o ID do baralho para o qual deseja assimilar a carta: (ou deixe em branco para manter o mesmo baralho)"
+    "\nCaso deseje mudar de baralho, digite o ID do baralho para o qual deseja assimilar a carta: (ou deixe em branco para manter o mesmo baralho)"
   );
   let novoBaralho = prompt("> ");
 
@@ -42,9 +43,10 @@ export function atualizarFlashcards() {
 
   flashcards[flashcardIndex] = flashcard;
 
+  console.clear()
   console.log("Alterações salvas!");
   console.log("Pressione Enter para retornar ao menu");
-  let menu = prompt("");
+  menu = prompt("");
   switch (menu) {
     default:
       exibirMenu();

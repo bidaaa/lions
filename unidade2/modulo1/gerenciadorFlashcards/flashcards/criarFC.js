@@ -20,6 +20,7 @@ export function criarFlashcard() {
   }
   console.log("Qual a pergunta do flashcard?");
   let pergunta = prompt("> ");
+  pergunta = pergunta.toLowerCase()
   console.log("Qual a resposta?");
   let resposta = prompt("> ");
   console.log("Qual o nome do baralho que deseja adicionar esse flashcard?");
@@ -54,6 +55,7 @@ export function criarFlashcard() {
 
   flashcards.push(flashcard);
 
+  console.clear()
   console.log("Flashcard criado com sucesso!");
   console.log("Deseja criar mais algum flashcard?\n1- Sim\nOutro- Sair");
   let opcao = prompt("");
