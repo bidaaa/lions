@@ -1,5 +1,45 @@
-import { prompt, exibirMenu } from "../app.js";
+import { prompt, exibirMenu, baralhos, flashcards } from "../app.js";
 
-export function excluirBaralho(){
-    
+export function excluirBaralho() {
+  console.clear();
+  console.log("Digite o ID do baralho que deseja excluir");
+  const id = prompt("> ");
+  const baralhoIndex = baralhos.findIndex((baralho) => baralho.id == id);
+  if (baralhoIndex === -1) {
+    console.log("Baralho não encontrado.");
+    console.log("\nPressione Enter para voltar ao menu");
+    let menu = prompt("");
+    switch (menu) {
+      default:
+        exibirMenu();
+        break;
+    }
+  }
+
+  const baralho = baralhos[baralhoIndex]
+
+  console.log(`Excluindo o baralho:\n Nome: ${baralho.nome}\n ID: ${baralho.id}`)
+
+  console.log("Certeza que deseja excluir esse baralho? Os flashcards associados a ele serão excluidos também.\n1- Sim\nOutro- Voltar")
+  let opcao = prompt("> ")
+  switch(opcao){
+    case "1":
+        flashcards.forEach((flashcard) => {
+            if(flashcard.idBaralho == baralho.id){
+                flashcards.splice(flashcard, 1)
+            }
+        })
+        baralhos.splice(baralhoIndex, 1)
+        console.log("Baralho excluído com sucesso!")
+        console.log("Pressione enter para voltar ao menu")
+        let menu = prompt("")
+        switch(menu){
+            default:
+                exibirMenu()
+                break
+        }
+    default:
+        exibirMenu()
+        break
+  }
 }
