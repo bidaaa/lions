@@ -57,7 +57,7 @@ app.delete('/estudantes/:id', (req, res) => {
 })
 
 app.get('/estudantes/busca', (req, res) => {
-    const { id, nome, matricula, ano, curso } = req.query;
+    const { nome, matricula, ano, curso } = req.query;
 
     let resultado = estudantes;
 
