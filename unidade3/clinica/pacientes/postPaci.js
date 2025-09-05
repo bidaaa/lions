@@ -8,7 +8,7 @@ export function postPaci(req,res){
     }
     idP++
     const paciente = {
-        id,
+        id: idP,
         nome,
         birthdate
     }

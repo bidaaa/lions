@@ -18,12 +18,12 @@ import { attMed } from './medicos/attMed.js'
 
 router.post("/pacientes", postPaci)
 router.get("/pacientes", listPaci)
-router.delete("/pacientes", delPaci)
-router.patch("/pacientes", attPaci)
+router.delete("/pacientes/:id", delPaci)
+router.patch("/pacientes/:id", attPaci)
 router.post("/medicos", postMed)
 router.get("/medicos", listMed)
-router.delete("/medicos", delMed)
-router.patch("/medicos", attMed)
+router.delete("/medicos/:id", delMed)
+router.patch("/medicos/:id", attMed)
 
 
 
