@@ -1,14 +1,14 @@
 export let consultas = []
-let idC = 0
+let id = 0
 
 export function postCon(req,res){
     const { data, idM, idP, desc } = req.body
     if(!data||!idM||!idP||!desc){
         return res.status(400).send("Você precisa cadastrar todas as informações da consulta.")
     }
-    idC++
+    id++
     const consulta = {
-        id: idC,
+        id,
         data,
         idM,
         idP,

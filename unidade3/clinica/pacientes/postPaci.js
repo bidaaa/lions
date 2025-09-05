@@ -1,14 +1,14 @@
-export let idP = 0
+let id = 0
 export let pacientes = []
 
 export function postPaci(req,res){
-    const {id, nome, birthdate} = req.body
+    const { nome, birthdate} = req.body
     if(!nome||!birthdate){
         return res.status(400).send("Você deve inserir todos os dados dos pacientes")
     }
-    idP++
+    id++
     const paciente = {
-        id: idP,
+        id,
         nome,
         birthdate
     }
