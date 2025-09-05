@@ -18,6 +18,9 @@ import { postCon } from './consultas/postCon.js';
 import { buscaCon, listCon } from './consultas/listCon.js';
 import { delCon } from './consultas/delCon.js';
 import { attCon } from './consultas/attCon.js';
+import { conMed } from './consultas/relatCon.js';
+import { conPaciMed } from './medicos/relatMed.js';
+import { conMedPaci } from './pacientes/relatPaci.js';
 
 router.post("/pacientes", postPaci)
 router.get("/pacientes", listPaci)
@@ -34,7 +37,9 @@ router.patch("/consultas/:id", attCon)
 router.get("/pacientes/buscar", buscaPaci)
 router.get("/medicos/buscar", buscaMed)
 router.get("/consultas/buscar", buscaCon)
-
+router.get("/relatorios/consultas/medico/:idM", conMed)
+router.get("/relatorios/pacientes/medico/:idM", conPaciMed)
+router.get("/relatorios/medicos/paciente/:idP", conMedPaci)
 
 router.get("/",(req,res) => {
     res.send("API funcionando")
