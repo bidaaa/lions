@@ -7,14 +7,17 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 import { postPaci } from './pacientes/postPaci.js';
-import { listPaci } from './pacientes/listPaci.js';
+import { buscaPaci, listPaci } from './pacientes/listPaci.js';
 import { delPaci } from './pacientes/delPaci.js';
 import { attPaci } from './pacientes/attPaci.js';
 import { postMed } from './medicos/postMed.js';
-import { listMed } from './medicos/listMed.js'
+import { buscaMed, listMed } from './medicos/listMed.js'
 import { delMed } from './medicos/delMed.js';
 import { attMed } from './medicos/attMed.js'
-
+import { postCon } from './consultas/postCon.js';
+import { buscaCon, listCon } from './consultas/listCon.js';
+import { delCon } from './consultas/delCon.js';
+import { attCon } from './consultas/attCon.js';
 
 router.post("/pacientes", postPaci)
 router.get("/pacientes", listPaci)
@@ -24,7 +27,13 @@ router.post("/medicos", postMed)
 router.get("/medicos", listMed)
 router.delete("/medicos/:id", delMed)
 router.patch("/medicos/:id", attMed)
-
+router.post("/consultas", postCon)
+router.get("/consultas", listCon)
+router.delete("/consultas/:id", delCon)
+router.patch("/consultas/:id", attCon)
+router.get("/pacientes/buscar", buscaPaci)
+router.get("/medicos/buscar", buscaMed)
+router.get("/consultas/buscar", buscaCon)
 
 
 router.get("/",(req,res) => {
