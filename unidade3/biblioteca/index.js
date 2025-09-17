@@ -7,7 +7,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(router)
 
+import { postEstud } from './estudantes/postEstud.js';
 
+router.post("/estudantes", postEstud)
 
 
 app.listen(port, () => {
