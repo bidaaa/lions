@@ -1,22 +1,20 @@
-import { lerDadosLivros, salvarDadosLivros } from "../../index.js";
+import { Book } from "../schemas/book_schema.js"
 
-export function deletarLivros (req, res){
-  const idParaDeletar = Number(req.params.id);
-  const livros = lerDadosLivros();
-
-  const livroIndex = livros.findIndex(
-    (livro) => livro.id === idParaDeletar
-  );
-
-  if (livroIndex === -1) {
-    return res.status(404).json({
-      message: "livro não encontrado com o id fornecido.",
-    });
+const deleteBook = async(id) => {
+  try {
+      return await Book.findByIdAndDelete(id)
+  } catch (error) {
+      console.error("Erro ao deletar o livro:", error.message)
+      throw error
   }
+}
 
-  livros.splice(livroIndex, 1);
-
-  salvarDadosLivros(livros);
-
-  res.status(200).send("Livro deletado com sucesso!");
-};
+export async function delLivro(req,res){
+    const {id} = req.params
+    const deletedBook = await deleteBook(id)
+    if(deletedBook){
+        res.status(200).send({message: "Livro deletado com sucesso!", book: deletedBook})
+    } else {
+        res.status(404).send({message: "Livro não encontrado!"})
+    }
+}

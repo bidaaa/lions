@@ -1,11 +1,8 @@
-import { salvarDadosAlugueis, lerDadosAlugueis } from "../../index.js";
-
 export function editarAluguel(req, res) {
   try {
     const idAluguel = Number(req.params.idAluguel);
     const { idEstudante, idLivro } = req.body;
 
-    const alugueis = lerDadosAlugueis();
     const aluguelIndex = alugueis.findIndex((aluguel) => aluguel.idAluguel === idAluguel);
 
     if (aluguelIndex == -1) {
@@ -26,8 +23,7 @@ export function editarAluguel(req, res) {
     };
 
     alugueis[aluguelIndex] = aluguelAtualizado;
-    salvarDadosAlugueis(alugueis);
-
+    
     return res
       .status(200)
       .send(`Aluguel com ID ${idAluguel} foi atualizado com sucesso.`);

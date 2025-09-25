@@ -1,22 +1,20 @@
-import { lerDadosEstudantes, salvarDadosEstudantes } from "../../index.js";
+import { Student } from "../schemas/student_schema.js";
 
-export function deletarEstudantes (req, res){
-  const idParaDeletar = Number(req.params.id);
-  const estudantes = lerDadosEstudantes();
-
-  const estudanteIndex = estudantes.findIndex(
-    (estudante) => estudante.id === idParaDeletar
-  );
-
-  if (estudanteIndex === -1) {
-    return res.status(404).json({
-      message: "Estudante não encontrado com o fornecido.",
-    });
+const deleteStudent = async(id) => {
+  try {
+      return await Student.findByIdAndDelete(id)
+  } catch (error) {
+      console.error("Erro ao deletar o estudante:", error.message)
+      throw error
   }
+}
 
-  estudantes.splice(estudanteIndex, 1);
-
-  salvarDadosEstudantes(estudantes);
-
-  res.status(200).send("Estudante deletado com sucesso!");
-};
+export async function delEstud(req,res){
+    const {id} = req.params
+    const deletedStudent = await deleteStudent(id)
+    if(deletedStudent){
+        res.status(200).send({message: "Estudante deletado com sucesso!", student: deleteStudent})
+    } else {
+        res.status(404).send({message: "Estudante não encontrado!"})
+    }
+}

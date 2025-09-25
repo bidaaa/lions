@@ -1,7 +1,15 @@
-import { lerDadosLivros } from "../../index.js";
+import { Book } from "../schemas/book_schema.js";
 
-export function listarLivros(req, res) {
-  const livros = lerDadosLivros();
+const getBooks = async() => {
+    try{
+        return await Book.find()
+    }catch(error){
+        console.error("Erro ao buscar os livros:", error.message)
+        throw error
+    }
+}
 
-  res.status(200).json(livros);
+export async function listLivros(req, res) {
+    const books = await getBooks()
+    res.status(200).send(books)
 }

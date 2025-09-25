@@ -1,12 +1,9 @@
-import { salvarDadosAlugueis, lerDadosAlugueis } from "../../index.js";
-
 export function devolucaoLivro(req, res) {
   try {
     const idAluguel = Number(req.params.idAluguel);
 
     const { idEstudante, idLivro, dataAluguel } = req.body
 
-    const alugueis = lerDadosAlugueis();
     const aluguelIndex = alugueis.findIndex((aluguel) => aluguel.idAluguel === idAluguel);
 
     if (aluguelIndex === -1) {
@@ -24,8 +21,7 @@ export function devolucaoLivro(req, res) {
       };
 
     alugueis[aluguelIndex] = aluguelAtualizado;
-    salvarDadosAlugueis(alugueis);
-
+    
     return res
       .status(200)
       .send(`Livro: ${aluguelAtualizado.idLivro}, foi devolvido`);

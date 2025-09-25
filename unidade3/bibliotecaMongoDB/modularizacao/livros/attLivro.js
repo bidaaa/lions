@@ -1,41 +1,26 @@
+import { Book } from "../schemas/book_schema.js";
 
-import { salvarDadosLivros, lerDadosLivros } from "../../index.js";
-
-export function atualizarLivro(req, res) {
-  try {
-    const id = Number(req.params.id);
-    const { titulo, genero, ano, autor } = req.body;
-
-    if (!titulo || !genero || !ano || !autor) {
-      return res
-        .status(400)
-        .send("Todos os campos sao obrigatorios (titulo, genero, ano e autor)");
-    }
-
-    const livros = lerDadosLivros();
-    const livroIndex = livros.findIndex((livro) => livro.id === id);
-
-    if (livroIndex === -1) {
-      return res
-        .status(400)
-        .send("Nao foi possivel encontrar um livro com esse id");
-    }
-
-    const livroAtualizado = {
-      id: id,
-      titulo,
-      autor,
-      ano,
-      genero,
-    };
-
-    livros[livroIndex] = livroAtualizado;
-    salvarDadosLivros(livros);
-
-    return res
-      .status(200)
-      .send(`Livro ${livroAtualizado.titulo}, atualizado com sucesso`);
-  } catch (error) {
-    res.status(500).send(error.message);
+const updateBook = async(id, title, author, year, genre) => {
+  try{
+      const updatedBook = await Book.findByIdAndUpdate(
+          id,
+          {title, author, year, genre},
+          {new: true, runValidators: true}
+      )
+      return updatedBook
+  } catch (error){
+      console.error("Erro ao atualizar o livro", error.message)
+      throw error
   }
+}
+
+export async function attLivro(req,res){
+  const {id} = req.params
+    const {title, author, year, genre} = req.body
+    const updatedBook = await updateBook(id, title, author, year, genre)
+    if(updatedBook){
+        res.status(200).send({message: "Livro atualizado com sucesso!", book: updatedBook})
+    } else {
+        res.status(404).send({message: "Livro não encontrado"})
+    }
 }

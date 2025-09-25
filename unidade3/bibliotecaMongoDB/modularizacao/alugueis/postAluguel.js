@@ -1,5 +1,3 @@
-import { lerDadosAlugueis, salvarDadosAlugueis } from "../../index.js";
-
 export function adicionarAluguel(req, res) {
   const { idLivro, idEstudante } = req.body;
 
@@ -8,8 +6,6 @@ export function adicionarAluguel(req, res) {
       message: "Todos os campos (idLivro e idEstudante) são obrigatórios.",
     });
   }
-
-  const alugueis = lerDadosAlugueis();
 
   const livroJaAlugado = alugueis.some(
     (aluguel) => aluguel.idLivro === idLivro && aluguel.dataDevolucao === null
@@ -31,7 +27,6 @@ export function adicionarAluguel(req, res) {
 
   alugueis.push(novoAluguel);
 
-  salvarDadosAlugueis(alugueis);
   res.status(201).json({
     message: "Aluguel registrado com sucesso!",
   });

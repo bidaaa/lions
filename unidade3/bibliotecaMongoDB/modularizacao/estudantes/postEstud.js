@@ -1,27 +1,18 @@
-import { lerDadosEstudantes, salvarDadosEstudantes } from "../../index.js";
+import { Student } from "../schemas/student_schema.js";
 
-export function adicionarEstudantes (req, res) {
-  const { nome, matricula, ano, curso } = req.body;
-
-  if (!nome || !matricula || !ano || !curso) {
-    return res.status(400).json({
-      message: "Todos os campos (nome, matricula, ano e curso) são obrigatórios.",
-    });
+const createStudent = async (name, tuition, year, major) => {
+  try {
+      const newStudent = new Student({name, tuition, year, major})
+      return await newStudent.save()
+  } catch (error) {
+      console.error("Erro ao criar o estudante", error.message)
+      throw error
   }
+}
 
-  const novoEstudante = {
-    id: Date.now(),
-    nome,
-    matricula,
-    curso,
-    ano,
-  };
+export async function addEstud(req,res){
+    const {name, tuition, year, major} = req.body
+    const newStudent = await createStudent(name, tuition, year, major)
 
-  const estudantes = lerDadosEstudantes();
-
-  estudantes.push(novoEstudante);
-
-  salvarDadosEstudantes(estudantes);
-
-  res.status(201).send(`Estudante: "${novoEstudante.nome}" adicionado`);
-};
+    res.status(201).send({message: "Estudante criado com sucesso!", student: newStudent})
+}

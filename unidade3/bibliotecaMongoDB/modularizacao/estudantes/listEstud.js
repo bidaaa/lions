@@ -1,7 +1,15 @@
-import { lerDadosEstudantes } from "../../index.js";
+import { Student } from "../schemas/student_schema.js";
 
-export function listarEstudantes(req, res) {
-  const estudantes = lerDadosEstudantes();
+const getStudents = async() => {
+    try{
+        return await Student.find()
+    }catch(error){
+        console.error("Erro ao buscar os estudantes:", error.message)
+        throw error
+    }
+}
 
-  res.status(200).json(estudantes);
+export async function listEstud(req, res) {
+    const students = await getStudents()
+    res.status(200).send(students)
 }

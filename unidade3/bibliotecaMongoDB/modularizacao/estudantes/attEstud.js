@@ -1,40 +1,26 @@
-import { lerDadosEstudantes, salvarDadosEstudantes } from "../../index.js";
+import { Student } from "../schemas/student_schema.js";
 
-export function atualizarEstudantes(req, res) {
-  try {
-    const id = Number(req.params.id);
-    const { nome, matricula, ano, curso } = req.body;
-
-    if (!nome || !matricula || !ano || !curso) {
-      return res
-        .status(400)
-        .send("Todos os campos sao obrigatorios (nome, matricula, ano e curso)");
-    }
-
-    const estudantes = lerDadosEstudantes();
-    const estudantesindex = estudantes.findIndex((livro) => livro.id === id);
-
-    if (estudantesindex === -1) {
-      return res
-        .status(400)
-        .send("Nao foi possivel encontrar um estudante com esse id");
-    }
-
-    const estudanteAtualizado = {
-      id: id,
-      nome,
-      matricula,
-      ano,
-      curso,
-    };
-
-    estudantes[estudantesindex] = estudanteAtualizado;
-    salvarDadosEstudantes(estudantes);
-
-    return res
-      .status(200)
-      .send(`Estudante: ${estudanteAtualizado.nome}, atualizado com sucesso`);
-  } catch (error) {
-    res.status(500).send(error.message);
+const updateStudent = async(id, name, tuition, year, major) => {
+  try{
+      const updatedStudent = await Student.findByIdAndUpdate(
+          id,
+          {name, tuition, year, major},
+          {new: true, runValidators: true}
+      )
+      return updatedStudent
+  } catch (error){
+      console.error("Erro ao atualizar o livro", error.message)
+      throw error
   }
+}
+
+export async function attEstud(req,res){
+  const {id} = req.params
+    const {name, tuition, year, major} = req.body
+    const updatedStudent = await updateStudent(id, name, tuition, year, major)
+    if(updatedStudent){
+        res.status(200).send({message: "Estudante atualizado com sucesso!", student: updatedStudent})
+    } else {
+        res.status(404).send({message: "Estudante não encontrado"})
+    }
 }

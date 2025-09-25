@@ -1,27 +1,22 @@
-import { lerDadosLivros, salvarDadosLivros } from "../../index.js";
+import { Book } from "../schemas/book_schema.js";
 
-export function adicionarLivros (req, res) {
-  const { titulo, autor, ano, genero } = req.body;
+export async function addLivros (req, res) {
+  const { title, author, year, genre } = req.body;
 
-  if (!titulo || !autor || !ano || !genero) {
+  if (!title || !author || !year || !genre) {
     return res.status(400).json({
       message: "Todos os campos (titulo, autor, ano e genero) são obrigatórios.",
     });
   }
 
-  const novoLivro = {
-    id: Date.now(),
-    titulo,
-    autor,
-    ano,
-    genero,
-  };
+  const novoLivro = new Book({
+    title,
+    author,
+    year,
+    genre
+  });
 
-  const livros = lerDadosLivros();
+  const salvarLivro = await novoLivro.save()
 
-  livros.push(novoLivro);
-
-  salvarDadosLivros(livros);
-
-  res.status(201).send(`Livro "${novoLivro.titulo}" adicionado`);
+  res.status(201).send(`Livro "${novoLivro.title}" adicionado`, salvarLivro);
 };

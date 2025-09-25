@@ -1,8 +1,5 @@
-import { lerDadosAlugueis, salvarDadosAlugueis } from "../../index.js";
-
 export function deletarAlugueis (req, res){
   const idAluguelParaDeletar = Number(req.params.idAluguel);
-  const alugueis = lerDadosAlugueis();
 
   const alugueisIndex = alugueis.findIndex(
     (aluguel) => aluguel.idAluguel === idAluguelParaDeletar
@@ -16,7 +13,6 @@ export function deletarAlugueis (req, res){
 
   alugueis.splice(alugueisIndex, 1);
 
-  salvarDadosAlugueis(alugueis);
 
   res.status(200).send("Aluguel deletado com sucesso!");
 };
