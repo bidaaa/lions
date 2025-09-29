@@ -10,8 +10,9 @@ const flashcardSchema = new mongoose.Schema({
         required: true
     },
     idBaralho: {
-        type: Number,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "deck"
     }
 })
 
