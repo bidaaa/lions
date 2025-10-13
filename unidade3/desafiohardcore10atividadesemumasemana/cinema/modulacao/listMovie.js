@@ -4,7 +4,7 @@ const getMovies = async() => {
     try{
         return await Movie.find()
     }catch(error){
-        console.error("Erro ao encontrar os filmes:", error.message)
+        console.error("Erro ao encontrar os filmes", error.message)
         throw error
     }
 }
