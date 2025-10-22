@@ -9,7 +9,7 @@ export function authUser(req, res, next) {
     const token = authHeader.startsWith('bearer ') ? authHeader.slice(7) : authHeader;
     
     try {
-        const secret = process.env.JWT_SECRET || process.env.tokenjwt;
+        const secret = process.env.JWT_SECRET 
         if (!secret) {
             console.log('JWT secret não configurado');
             return res.status(500).send("Erro ao criar");
